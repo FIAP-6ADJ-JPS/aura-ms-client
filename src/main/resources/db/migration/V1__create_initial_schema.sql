@@ -2,7 +2,7 @@ CREATE TABLE CLIENT (
                         ID BIGSERIAL PRIMARY KEY,
                         FIRST_NAME VARCHAR(255) NOT NULL,
                         LAST_NAME VARCHAR(255) NOT NULL,
-                        CPF VARCHAR(11) NOT NULL UNIQUE,
+                        CPF VARCHAR(14) NOT NULL UNIQUE,
                         BIRTH_DATE DATE NOT NULL
 );
 

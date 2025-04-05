@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Client {
-    private final String firstName;
-    private final String lastName;
-    private final CPF cpf;
-    private final LocalDate birthDate;
-    private final List<Address> addresses;
+    private String firstName;
+    private String lastName;
+    private CPF cpf;
+    private LocalDate birthDate;
+    private List<Address> addresses;
+
+    public Client(){}
 
     public Client(String firstName, String lastName, CPF cpf, LocalDate birthDate, List<Address> addresses) {
         this.firstName = Objects.requireNonNull(firstName, "First name cannot be null");
@@ -54,16 +56,39 @@ public class Client {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public CPF getCpf() {
         return cpf;
     }
 
+    public void setCpf(CPF cpf) {
+        this.cpf = cpf;
+    }
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 }
