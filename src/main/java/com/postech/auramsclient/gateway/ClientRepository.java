@@ -4,8 +4,15 @@ import com.postech.auramsclient.domain.valueobject.CPF;
 import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ClientRepository {
-    boolean existsByCpf(CPF cpf);
+    boolean existsByCpf(String cpf);
     ClientEntity save(ClientEntity client);
+    List<ClientEntity> findAll();
+    ClientEntity findById(Long id);
+    ClientEntity findByCpf(String cpf);
+    ClientEntity updateClient(Long id);
+    void deleteById(Long id);
 }

@@ -17,11 +17,11 @@ public class Client {
     public Client(){}
 
     public Client(String firstName, String lastName, CPF cpf, LocalDate birthDate, List<Address> addresses) {
-        this.firstName = Objects.requireNonNull(firstName, "First name cannot be null");
-        this.lastName = Objects.requireNonNull(lastName, "Last name cannot be null");
-        this.cpf = Objects.requireNonNull(cpf, "CPF cannot be null");
-        this.birthDate = Objects.requireNonNull(birthDate, "Birth date cannot be null");
-        this.addresses = Objects.requireNonNull(addresses, "Addresses cannot be null");
+        this.firstName = Objects.requireNonNull(firstName, "Nome não pode ser nulo");
+        this.lastName = Objects.requireNonNull(lastName, "Sobrenome não pode ser nulo");
+        this.cpf = Objects.requireNonNull(cpf, "CPF não pode ser nulo");
+        this.birthDate = Objects.requireNonNull(birthDate, "Data de nascimento não pode ser nulo");
+        this.addresses = Objects.requireNonNull(addresses, "Endereço não pode ser nulo");
         validate();
     }
 
@@ -31,19 +31,19 @@ public class Client {
 
     private void validate() {
         if (!cpf.isValid()) {
-            throw new IllegalArgumentException("Invalid CPF");
+            throw new IllegalArgumentException("CPF inválido");
         }
         if (firstName.isEmpty()) {
-            throw new IllegalArgumentException("First name cannot be empty");
+            throw new IllegalArgumentException("Nome não pode ser vazio");
         }
         if (lastName.isEmpty()) {
-            throw new IllegalArgumentException("Last name cannot be empty");
+            throw new IllegalArgumentException("Sobrenome não pode ser vazio");
         }
         if (addresses.isEmpty()) {
-            throw new IllegalArgumentException("Addresses cannot be empty");
+            throw new IllegalArgumentException("Endereço não pode ser vazio");
         }
         if (!isAdult()) {
-            throw new IllegalArgumentException("Client must be an adult");
+            throw new IllegalArgumentException("Cliente deve ter81 anos, ou mais.");
         }
     }
 

@@ -20,7 +20,7 @@ public class CreateClientUseCase {
     }
 
     public Client createClient(Client client) {
-        CPF cpf = new CPF(client.getCpf().getValue());
+        String cpf = client.getCpf().getValue();
         if (clientRepository.existsByCpf(cpf)){
             throw new DuplicateResourceException("Já existe cliente cadastrado com esse CPF");
         }

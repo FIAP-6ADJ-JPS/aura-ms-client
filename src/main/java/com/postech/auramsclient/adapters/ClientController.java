@@ -32,4 +32,29 @@ public class ClientController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         }
     }
+
+    @GetMapping
+    public ResponseEntity<?> listAllClients() {
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findClientById() {
+        return null;
+    }
+
+    @GetMapping("/document/{document}")
+    public ResponseEntity<?> findClientByDocument() {
+        return null;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateClient() {
+        return null;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteClient() {
+        return null;
+    }
 }

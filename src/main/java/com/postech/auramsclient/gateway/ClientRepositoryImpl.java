@@ -6,6 +6,8 @@ import com.postech.auramsclient.gateway.database.jpa.repository.ClientJpaReposit
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientRepositoryImpl implements ClientRepository {
 
@@ -18,7 +20,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public boolean existsByCpf(CPF cpf) {
+    public boolean existsByCpf(String cpf) {
         return clientJpaRepository.existsByCpf(cpf);
     }
 
@@ -28,5 +30,30 @@ public class ClientRepositoryImpl implements ClientRepository {
             return clientJpaRepository.save(clientEntity);
         }
         return clientEntity;
+    }
+
+    @Override
+    public List<ClientEntity> findAll() {
+        return List.of();
+    }
+
+    @Override
+    public ClientEntity findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public ClientEntity findByCpf(String cpf) {
+        return null;
+    }
+
+    @Override
+    public ClientEntity updateClient(Long id) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
     }
 }
