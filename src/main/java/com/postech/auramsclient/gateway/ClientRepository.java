@@ -13,6 +13,6 @@ public interface ClientRepository {
     List<ClientEntity> findAll();
     ClientEntity findById(Long id);
     ClientEntity findByCpf(String cpf);
-    ClientEntity updateClient(Long id);
+    ClientEntity updateClient(Long id, ClientEntity clientEntity);
     void deleteById(Long id);
 }

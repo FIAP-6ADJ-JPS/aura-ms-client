@@ -1,7 +1,5 @@
 package com.postech.auramsclient.adapters.dto;
 
-import com.postech.auramsclient.domain.valueobject.CPF;
-
 import java.time.LocalDate;
 import java.util.List;
 

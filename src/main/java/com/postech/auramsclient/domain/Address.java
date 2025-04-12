@@ -4,12 +4,15 @@ import java.util.Objects;
 
 public class Address {
 
-    private final String street;
-    private final String number;
-    private final String zipcode;
-    private final String neighborhood;
-    private final String city;
-    private final String state;
+    private String street;
+    private String number;
+    private String zipcode;
+    private String neighborhood;
+    private String city;
+    private String state;
+
+    public Address() {
+    }
 
     public Address(String street, String number, String zipcode, String neighborhood, String city, String state) {
         this.street = Objects.requireNonNull(street, "Rua não pode ser nula");

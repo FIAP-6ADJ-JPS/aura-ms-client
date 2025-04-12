@@ -48,7 +48,7 @@ public class Client {
     }
 
     public void addAddress(Address address) {
-        Objects.requireNonNull(address, "Address cannot be null");
+        Objects.requireNonNull(address, "Endereço não pode ser nulo");
         this.addresses.add(address);
     }
 
