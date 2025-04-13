@@ -1,12 +1,17 @@
 package com.postech.auramsclient.adapters;
 
+import com.postech.auramsclient.adapters.dto.AddressDTO;
 import com.postech.auramsclient.adapters.dto.ClientDTO;
 import com.postech.auramsclient.application.CreateClientUseCase;
 import com.postech.auramsclient.application.DeleteClientUseCase;
 import com.postech.auramsclient.application.FindClientUseCase;
 import com.postech.auramsclient.application.UpdateClientUseCase;
+import com.postech.auramsclient.application.address.CreateAddressUseCase;
+import com.postech.auramsclient.application.address.DeleteAddressUseCase;
+import com.postech.auramsclient.application.address.UpdateAddressUseCase;
 import com.postech.auramsclient.config.exceptions.DuplicateResourceException;
 import com.postech.auramsclient.domain.Client;
+import com.postech.auramsclient.gateway.database.jpa.entity.AddressEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +27,22 @@ public class ClientController {
     private final FindClientUseCase findClientUseCase;
     private final UpdateClientUseCase updateClientUseCase;
     private final DeleteClientUseCase deleteClientUseCase;
+    private final CreateAddressUseCase createAddressUseCase;
+    private final UpdateAddressUseCase updateAddressUseCase;
+    private final DeleteAddressUseCase deleteAddressUseCase;
     private final ModelMapper modelMapper;
 
     public ClientController(CreateClientUseCase createClientUseCase,FindClientUseCase findClientUseCase,
                             UpdateClientUseCase updateClientUseCase, DeleteClientUseCase deleteClientUseCase,
-                            ModelMapper modelMapper) {
+                            CreateAddressUseCase createAddressUseCase, UpdateAddressUseCase updateAddressUseCase,
+                            DeleteAddressUseCase deleteAddressUseCase, ModelMapper modelMapper) {
         this.createClientUseCase = createClientUseCase;
         this.findClientUseCase = findClientUseCase;
         this.updateClientUseCase = updateClientUseCase;
         this.deleteClientUseCase = deleteClientUseCase;
+        this.createAddressUseCase = createAddressUseCase;
+        this.updateAddressUseCase = updateAddressUseCase;
+        this.deleteAddressUseCase = deleteAddressUseCase;
         this.modelMapper = modelMapper;
     }
 
@@ -81,4 +93,27 @@ public class ClientController {
         deleteClientUseCase.deleteClient(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @PostMapping("/{idClient}/addresses")
+    public ResponseEntity<AddressDTO> addAddressToClient(@PathVariable Long idClient, @RequestBody AddressDTO addressDTO) {
+        AddressEntity addressEntity = modelMapper.map(addressDTO, AddressEntity.class);
+        var createdAddress = createAddressUseCase.createAddress(idClient, addressEntity);
+        var createdAddressDTO = modelMapper.map(createdAddress, AddressDTO.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAddressDTO);
+    }
+
+
+    @PutMapping("/{idClient}/addresses/{addressId}")
+    public ResponseEntity<AddressDTO> editAddress(@PathVariable Long idClient, @PathVariable Long addressId, @RequestBody AddressDTO addressDTO) {
+        AddressEntity addressEntity = modelMapper.map(addressDTO, AddressEntity.class);
+        AddressEntity updatedAddress = updateAddressUseCase.updateAddress(idClient, addressId, addressEntity);
+        return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(updatedAddress, AddressDTO.class));
+    }
+
+    @DeleteMapping("/{idClient}/addresses/{addressId}")
+    public ResponseEntity<Void> deleteClient(@PathVariable Long idClient, @PathVariable Long addressId) {
+        deleteAddressUseCase.deleteAddress(idClient, addressId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }

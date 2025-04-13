@@ -1,7 +1,6 @@
 package com.postech.auramsclient.gateway;
 
 import com.postech.auramsclient.config.exceptions.ResourceNotFoundException;
-import com.postech.auramsclient.domain.valueobject.CPF;
 import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import com.postech.auramsclient.gateway.database.jpa.repository.ClientJpaRepository;
 import org.modelmapper.ModelMapper;
