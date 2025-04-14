@@ -11,3 +11,29 @@ public class AuraMsClientApplication {
     }
 
 }
+
+/**
+ * A estrutura de pacotes do projeto é organizada da seguinte forma:
+ *
+ * - adapters: Controladores e DTOs
+ * - application: Casos de uso
+ * - config: Configuração da aplicação
+ * - domain: Entidades e objetos de valor
+ * - gateway: Repositórios e infraestrutura
+ *
+ * A estrutura de diretórios do projeto é organizada da seguinte forma:
+ *
+ * src/
+ *  └── main/
+ *      ├── java/com/postech/auramsclient
+ *      │   ├── adapters       # Controladores e DTOs
+ *      │   ├── application    # Casos de uso
+ *      │   ├── config         # Configuração da aplicação
+ *      │   ├── domain         # Entidades e objetos de valor
+ *      │   └── gateway        # Repositórios e infraestrutura
+ *      └── resources/
+ *          ├── api            # Especificação OpenAPI
+ *          └── db/migration   # Migrações Flyway
+ *  └── test/
+ *      └── java/...           # Casos de teste
+ */
