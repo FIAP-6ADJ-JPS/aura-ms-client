@@ -20,22 +20,22 @@ public class FindClientUseCase {
         this.modelMapper = modelMapper;
     }
 
-    public List<Client> findAll(){
+    public List<Client> findAll() {
         List<ClientEntity> listClients = clientRepository.findAll();
         List<Client> clients = new ArrayList<>();
-        for(ClientEntity clientEntity: listClients){
+        for (ClientEntity clientEntity : listClients) {
             Client client = modelMapper.map(clientEntity, Client.class);
             clients.add(client);
         }
         return clients;
     }
 
-    public Client findById(Long id){
+    public Client findById(Long id) {
         ClientEntity clientEntity = clientRepository.findById(id);
         return modelMapper.map(clientEntity, Client.class);
     }
 
-    public Client findByCpf(String cpf){
+    public Client findByCpf(String cpf) {
         ClientEntity clientEntity = clientRepository.findByCpf(cpf);
         return modelMapper.map(clientEntity, Client.class);
     }

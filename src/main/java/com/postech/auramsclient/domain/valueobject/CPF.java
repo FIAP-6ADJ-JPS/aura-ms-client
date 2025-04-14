@@ -50,11 +50,15 @@ public class CPF {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         CPF cpf = (CPF) o;
         return Objects.equals(document, cpf.document);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(document);
+    }
 }

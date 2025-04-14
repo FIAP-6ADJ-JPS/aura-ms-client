@@ -1,8 +1,10 @@
 package com.postech.auramsclient.config.modelmapper;
 
 import com.postech.auramsclient.adapters.dto.ClientDTO;
+import com.postech.auramsclient.domain.Address;
 import com.postech.auramsclient.domain.Client;
 import com.postech.auramsclient.domain.valueobject.CPF;
+import com.postech.auramsclient.gateway.database.jpa.entity.AddressEntity;
 import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +17,7 @@ public class ModelMapperConfig {
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setSkipNullEnabled(true);
-        // Add custom mapping for CPF between ClientDTO and Client
+
         modelMapper.createTypeMap(ClientDTO.class, Client.class)
                 .addMappings(mapper -> mapper.skip(Client::setCpf))
                 .setPostConverter(context -> {
@@ -27,7 +29,6 @@ public class ModelMapperConfig {
                     return destination;
                 });
 
-        // Add reverse mapping from Client to ClientDTO
         modelMapper.createTypeMap(Client.class, ClientDTO.class)
                 .addMappings(mapper -> mapper.skip(ClientDTO::setCpf))
                 .setPostConverter(context -> {
@@ -58,6 +59,27 @@ public class ModelMapperConfig {
                     }
                     return destination;
                 });
+
+        modelMapper.createTypeMap(AddressEntity.class, Address.class)
+                .addMappings(mapper -> {
+                    mapper.map(AddressEntity::getStreet, Address::setStreet);
+                    mapper.map(AddressEntity::getNumber, Address::setNumber);
+                    mapper.map(AddressEntity::getZipcode, Address::setZipcode);
+                    mapper.map(AddressEntity::getNeighborhood, Address::setNeighborhood);
+                    mapper.map(AddressEntity::getCity, Address::setCity);
+                    mapper.map(AddressEntity::getState, Address::setState);
+                });
+
+        modelMapper.createTypeMap(Address.class, AddressEntity.class)
+                .addMappings(mapper -> {
+                    mapper.map(Address::getStreet, AddressEntity::setStreet);
+                    mapper.map(Address::getNumber, AddressEntity::setNumber);
+                    mapper.map(Address::getZipcode, AddressEntity::setZipcode);
+                    mapper.map(Address::getNeighborhood, AddressEntity::setNeighborhood);
+                    mapper.map(Address::getCity, AddressEntity::setCity);
+                    mapper.map(Address::getState, AddressEntity::setState);
+                });
+
         return modelMapper;
     }
 }

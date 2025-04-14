@@ -8,13 +8,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Client {
+    private Long id;
     private String firstName;
     private String lastName;
     private CPF cpf;
     private LocalDate birthDate;
     private List<Address> addresses;
 
-    public Client(){}
+    public Client() {
+    }
 
     public Client(String firstName, String lastName, CPF cpf, LocalDate birthDate, List<Address> addresses) {
         this.firstName = Objects.requireNonNull(firstName, "Nome não pode ser nulo");
@@ -50,6 +52,14 @@ public class Client {
     public void addAddress(Address address) {
         Objects.requireNonNull(address, "Endereço não pode ser nulo");
         this.addresses.add(address);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

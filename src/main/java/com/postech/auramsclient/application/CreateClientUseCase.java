@@ -2,7 +2,6 @@ package com.postech.auramsclient.application;
 
 import com.postech.auramsclient.config.exceptions.DuplicateResourceException;
 import com.postech.auramsclient.domain.Client;
-import com.postech.auramsclient.domain.valueobject.CPF;
 import com.postech.auramsclient.gateway.ClientRepository;
 import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import org.modelmapper.ModelMapper;
@@ -21,7 +20,7 @@ public class CreateClientUseCase {
 
     public Client createClient(Client client) {
         String cpf = client.getCpf().getValue();
-        if (clientRepository.existsByCpf(cpf)){
+        if (clientRepository.existsByCpf(cpf)) {
             throw new DuplicateResourceException("Já existe cliente cadastrado com esse CPF");
         }
         ClientEntity clientEntity = modelMapper.map(client, ClientEntity.class);

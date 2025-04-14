@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ClientDTO {
+    private Long clientId;
     private String firstName;
     private String lastName;
     private String cpf;
@@ -13,12 +14,21 @@ public class ClientDTO {
     public ClientDTO() {
     }
 
-    public ClientDTO(String firstName, String lastName, String cpf, LocalDate birthDate, List<AddressDTO> addresses) {
+    public ClientDTO(Long clientId, String firstName, String lastName, String cpf, LocalDate birthDate, List<AddressDTO> addresses) {
+        this.clientId = clientId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
         this.birthDate = birthDate;
         this.addresses = addresses;
+    }
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public String getFirstName() {

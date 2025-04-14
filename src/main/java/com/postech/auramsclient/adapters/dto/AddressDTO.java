@@ -1,12 +1,21 @@
 package com.postech.auramsclient.adapters.dto;
 
 public class AddressDTO {
+    private Long id;
     private String street;
     private String number;
     private String zipcode;
     private String neighborhood;
     private String city;
     private String state;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getStreet() {
         return street;

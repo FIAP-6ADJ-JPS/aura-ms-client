@@ -28,7 +28,7 @@ public class UpdateClientUseCase {
         existingClientEntity.setLastName(updatedClient.getLastName());
         existingClientEntity.setBirthDate(updatedClient.getBirthDate());
 
-        ClientEntity savedClientEntity = clientRepository.updateClient(id,existingClientEntity);
+        ClientEntity savedClientEntity = clientRepository.updateClient(id, existingClientEntity);
         return modelMapper.map(savedClientEntity, Client.class);
     }
 }

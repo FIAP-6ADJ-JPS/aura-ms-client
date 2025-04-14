@@ -3,6 +3,7 @@ package com.postech.auramsclient.gateway;
 import com.postech.auramsclient.config.exceptions.ResourceNotFoundException;
 import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import com.postech.auramsclient.gateway.database.jpa.repository.ClientJpaRepository;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -35,20 +36,27 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public List<ClientEntity> findAll() {
         List<ClientEntity> clients = clientJpaRepository.findAll();
+        clients.forEach(client -> Hibernate.initialize(client.getAddresses()));
         return clients;
     }
 
     @Override
     public ClientEntity findById(Long id) {
         ClientEntity client = clientJpaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
+        Hibernate.initialize(client.getAddresses());
         return client;
     }
 
     @Override
     public ClientEntity findByCpf(String cpf) {
-        if(cpf == null || cpf.isEmpty()) {
+        if (cpf == null || cpf.isEmpty()) {
             throw new ResourceNotFoundException("CPF não pode ser nulo ou vazio");
         }
+        ClientEntity client = clientJpaRepository.findByCpf(cpf);
+        if (client == null) {
+            throw new ResourceNotFoundException("Cliente não encontrado com o CPF: " + cpf);
+        }
+        Hibernate.initialize(client.getAddresses());
         return clientJpaRepository.findByCpf(cpf);
     }
 

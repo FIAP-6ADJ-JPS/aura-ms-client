@@ -1,6 +1,7 @@
 package com.postech.auramsclient.application.address;
-import com.postech.auramsclient.gateway.database.jpa.entity.AddressEntity;
+
 import com.postech.auramsclient.gateway.AddressRepository;
+import com.postech.auramsclient.gateway.database.jpa.entity.AddressEntity;
 import org.springframework.stereotype.Service;
 
 @Service

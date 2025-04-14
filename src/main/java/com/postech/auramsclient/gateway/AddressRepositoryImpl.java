@@ -5,7 +5,6 @@ import com.postech.auramsclient.gateway.database.jpa.entity.AddressEntity;
 import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import com.postech.auramsclient.gateway.database.jpa.repository.AddressJpaRepository;
 import com.postech.auramsclient.gateway.database.jpa.repository.ClientJpaRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,12 +12,10 @@ public class AddressRepositoryImpl implements AddressRepository {
 
     private final AddressJpaRepository addressJpaRepository;
     private final ClientJpaRepository clientJpaRepository;
-    private final ModelMapper modelMapper;
 
-    public AddressRepositoryImpl(AddressJpaRepository addressJpaRepository, ClientJpaRepository clientJpaRepository, ModelMapper modelMapper) {
+    public AddressRepositoryImpl(AddressJpaRepository addressJpaRepository, ClientJpaRepository clientJpaRepository) {
         this.addressJpaRepository = addressJpaRepository;
         this.clientJpaRepository = clientJpaRepository;
-        this.modelMapper = modelMapper;
     }
 
     @Override

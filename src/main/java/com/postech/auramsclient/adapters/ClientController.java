@@ -32,7 +32,7 @@ public class ClientController {
     private final DeleteAddressUseCase deleteAddressUseCase;
     private final ModelMapper modelMapper;
 
-    public ClientController(CreateClientUseCase createClientUseCase,FindClientUseCase findClientUseCase,
+    public ClientController(CreateClientUseCase createClientUseCase, FindClientUseCase findClientUseCase,
                             UpdateClientUseCase updateClientUseCase, DeleteClientUseCase deleteClientUseCase,
                             CreateAddressUseCase createAddressUseCase, UpdateAddressUseCase updateAddressUseCase,
                             DeleteAddressUseCase deleteAddressUseCase, ModelMapper modelMapper) {
@@ -80,6 +80,7 @@ public class ClientController {
         ClientDTO clientDTO = modelMapper.map(client, ClientDTO.class);
         return ResponseEntity.status(HttpStatus.OK).body(clientDTO);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<ClientDTO> updateClient(@PathVariable Long id, @RequestBody ClientDTO clientDTO) {
         Client client = modelMapper.map(clientDTO, Client.class);
