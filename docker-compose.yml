@@ -1,0 +1,39 @@
+services:
+  # Cliente Microservice
+  client_db:
+    image: postgres:13
+    container_name: client_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: aura_ms_client
+    ports:
+      - "5434:5432"
+    volumes:
+      - client_pgdata:/var/lib/postgresql/data
+    networks:
+      - aura_network
+
+  client_flyway:
+    image: flyway/flyway:10.12.0
+    container_name: client_flyway
+    depends_on:
+      - client_db
+    command: [
+      "migrate",
+      "-url=jdbc:postgresql://client_postgres_db:5434/aura_ms_client",
+      "-user=postgres",
+      "-password=postgres"
+    ]
+    volumes:
+      - ./aura-ms-client/src/main/resources/db/migration:/flyway/sql
+    networks:
+      - aura_network
+
+networks:
+  aura_network:
+    driver: bridge
+
+volumes:
+  client_pgdata:

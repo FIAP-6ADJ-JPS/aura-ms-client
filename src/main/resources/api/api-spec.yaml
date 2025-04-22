@@ -1,8 +1,18 @@
 openapi: 3.0.3
 info:
   title: AURA Client API
-  description: API for client management
+  description: API do Microsserviço de Cliente para o Sistema de Gerenciamento de Pedidos
   version: 1.0.0
+  contact:
+    name: Equipe Aura
+    email: equipe@aura.com.br
+servers:
+  - url: 'http://localhost:8004'
+    description: Servidor local
+tags:
+  - name: clients
+    description: Operações relacionadas ao cliente
+
 paths:
   /clients:
     get:
