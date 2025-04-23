@@ -14,7 +14,7 @@ tags:
     description: Operações relacionadas ao cliente
 
 paths:
-  /clients:
+  /api/v1/clients:
     get:
       summary: List all clients
       operationId: listClients
@@ -43,7 +43,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Client'
-  /clients/{clientId}:
+  /api/v1/clients/{clientId}:
     get:
       summary: Get a client by ID
       operationId: getClientById
@@ -97,7 +97,7 @@ paths:
       responses:
         '204':
           description: Client deleted successfully
-  /clients/{clientId}/addresses:
+  /api/v1/clients/{clientId}/addresses:
     get:
       summary: List all addresses for a client
       operationId: listClientAddresses
@@ -140,7 +140,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Address'
-  /clients/{clientId}/addresses/{addressId}:
+  /qpi/v1/clients/{clientId}/addresses/{addressId}:
     get:
       summary: Get a specific address
       operationId: getClientAddress
